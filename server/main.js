@@ -55,20 +55,20 @@ Meteor.methods({
     startNewGame:function (team_id, rounds, category, difficulty) {
         var clock;
         if(typeof rounds=='undefined') {
-            rounds = defaultRounds;
+            rounds = config.defaultRounds;
         }
         if(typeof category=='undefined') {
-            category = defaultCategory;
+            category = config.defaultCategory;
         }
         
         if(typeof difficulty=='undefined') {
-            difficulty = defaultDifficulty;
+            difficulty = config.defaultDifficulty;
         }
         if(typeof clock=='undefined') {
-            clock = defaultClock;
+            clock = config.defaultClock;
         }
 
-        var gamecode = createGamecode();
+        var gamecode = Meteor.helpers.createGameCode();
 
         var team = Teams.findOne({_id:team_id});
         // create a new game with the current team in it
@@ -81,21 +81,11 @@ Meteor.methods({
         var p = Teams.find({'gamecode':gamecode},
             {fields:{_id:true, name:true}}).fetch();
 
-        loadAnswers(gamecode);
+        Meteor.helpers.loadAnswers(gamecode);
 
         Games.update({'gamecode':gamecode}, {$set:{'teams':p}});
 
         return Games.findOne({'gamecode':gamecode});
-    },
-
-    /**
-     * Keeps alive a team
-     * @param {String} team_id   The team to keep alive.
-     */
-    keepAlive: function (team_id) {
-        Teams.update({_id:team_id},
-            {$set:{last_keepalive:(new Date()).getTime(),
-                idle:false}});
     },
 
     /**
@@ -124,8 +114,8 @@ Meteor.methods({
      */
     startClock: function(gamecode) {
         // Set the clock to the default clock
-        Games.update({gamecode:gamecode}, {$set:{clock:defaultClock}});
-        var clock = defaultClock;
+        Games.update({gamecode:gamecode}, {$set:{clock:config.defaultClock}});
+        var clock = config.defaultClock;
         var winner;
 
         // wind down the game clock
@@ -209,13 +199,39 @@ Meteor.methods({
                     'handicap':null,
                     'scoreConfirmed':false,
                     'team': newTeam,
-                    'clock': defaultClock,
+                    'clock': config.defaultClock,
                     'round' : game.round+1,
                     'answers': null,
                     'nextRound': true
                 }}
         );
 
-        loadAnswers(gamecode);
+        Meteor.helpers.loadAnswers(gamecode);
+    },
+
+    setRoundHandicap: function(gamecode, handicap) {
+        if (Dice.findOne({'access_code':gamecode})) {
+            Dice.update({'access_code':gamecode}, {$set:{'throw':handicap}});
+            Games.update({'gamecode' : gamecode}, {'$set':{'handicap':handicap}});
+        } else {
+            Dice.insert({'access_code':gamecode, 'throw':handicap});
+            Games.update({'gamecode' : gamecode}, {'$set':{'handicap':handicap}});
+        }
+    },
+
+    updateAnswers: function(gamecode, answers) {
+        Games.update({'gamecode':gamecode},{$set:{'answers':answers}});
+    },
+
+    confirmScore: function(gamecode, scores) {
+        Games.update({'gamecode': gamecode}, {'$set': {'scoreConfirmed' : true, 'roundScores': scores}});
+    },
+
+    declareWinner: function(gamecode, winner) {
+        Games.update({'gamecode': gamecode}, {'$set':{'winner':winner}});
+    },
+
+    resetNextRound: function(gamecode) {
+        Games.update({'gamecode': gamecode}, {'$set':{'nextRound':false}});
     }
 });

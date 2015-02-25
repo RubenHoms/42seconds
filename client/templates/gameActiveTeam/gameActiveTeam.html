@@ -1,0 +1,49 @@
+<template name="gameActiveTeam">
+    <div id="wrapper">
+        <header>
+            <img src="/images/logo-small.png">
+        </header>
+        <div class="game bluebg">
+            <h3 class="text_shadow_white_big">Round {{roundnumber}}</h3>
+
+            <div class="score text_shadow_black_small">Score {{score}}</div>
+            <ul class="answers text_shadow_black_big">
+
+                {{#each answers}}
+                    {{#if this.checkedOff}}
+                        <li id="answer-{{id}}" style="text-decoration: line-through" class="inactive"><input
+                                type="checkbox"
+                                class="checkbox"
+                                id="{{this.answer}}"
+                                name="{{this.answer}}"
+                                checked="checked"><label
+                                for="answer-{{id}}">{{this.answer}}</label></li>
+                    {{else}}
+                        <li><input type="checkbox" class="checkbox" id="{{this.answer}}"
+                                   name="{{this.answer}}">{{this.answer}}
+                        </li>
+                    {{/if}}
+                {{/each}}
+
+            </ul>
+            <div class="countdown run">
+                <img src="images/wijzerplaat.png">
+
+                <div class="clock run">
+                    <div class="pointer run">
+                        <img src="images/wijzer.png">
+                    </div>
+                    <div class="clock-left">
+                        <div class="half-circle">
+                        </div>
+                    </div>
+                    <div class="clock-right">
+                        <div class="half-circle">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ready}}
+</template>

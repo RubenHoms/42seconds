@@ -1,0 +1,19 @@
+<template name="showCode">
+    <div id="wrapper">
+        <header>
+            <img class="backbutton" src="/images/back-button.png">
+            <img src="/images/logo-small.png">
+        </header>
+        <div class="showcode bluebg">
+            <h3 class="text_shadow_white_big">Your code:</h3>
+
+            <div class="your-code text_shadow_black_big">{{ gamecode }}</div>
+            <p class="text_shadow_white_small">You are in:</p>
+
+            <h3 class="red text_shadow_black_big"><img src="/images/team-red-icon.png" align="ABSMIDDLE"> TEAM RED</h3>
+
+            <p class="text_shadow_white_small">Waiting for other party to join</p>
+        </div>
+    </div>
+    {{ ready }}
+</template>

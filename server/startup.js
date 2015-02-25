@@ -12,6 +12,10 @@
  * has compiled and loaded all the files necessary.
  */
 Meteor.startup(function () {
+
+    // Load config files
+    YamlConfig.loadFiles(Assets);
+    config = YamlConfig.getServerConfig();
 	 
     // Set the idle timeout checker to 30 seconds
     Meteor.setInterval(function () {
@@ -55,9 +59,7 @@ Meteor.startup(function () {
 
     // Clear all the answers to make room for the new ones
 
-    var fs = Npm.require('fs');
-    var json = fs.readFileSync('../client/app/items.json');
-    json = JSON.parse(json); // because eval is evil !11!!
+    var json = JSON.parse(Assets.getText("items.json"));
     for(var i=0;i < json.length; i++) {
         if(Answers.findOne({'answer': json[i].answer})) {
             continue;

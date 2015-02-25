@@ -1,0 +1,5 @@
+defaultClock: 5
+defaultRounds: 2
+defaultCategory: 'all'
+defaultDifficulty: 'medium'
+defaultNumberOfAnswers: 5

@@ -1,0 +1,29 @@
+<template name="gameScoreCheck">
+    <div id="wrapper">
+        <header>
+            <img src="/images/logo-small.png">
+        </header>
+        <div class="game bluebg">
+            <h3>Score check</h3>
+            <ul class="answers text_shadow_black_big">
+
+                {{#each answers}}
+                    {{#if this.checkedOff}}
+                        <li id="answer-{{id}}" style="text-decoration: line-through" class="inactive"><input
+                                type="checkbox"
+                                class="checkbox"
+                                id="{{this.answer}}"
+                                name="{{this.answer}}"
+                                checked="checked"><label
+                                for="answer-{{id}}">{{this.answer}}</label></li>
+                    {{else}}
+                        <li><input type="checkbox" class="checkbox" id="{{this.answer}}" name="{{this.answer}}"><label
+                                for="answer-{{id}}">{{this.answer}}</label></li>
+                    {{/if}}
+                {{/each}}
+
+            </ul>
+            <input type="button" id="nextround" class="nextround" value="Done!"/>
+        </div>
+    </div>
+</template>

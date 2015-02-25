@@ -5,6 +5,11 @@
 
 autopublish
 insecure
-preserve-inputs
 stylus
 standard-app-packages
+meteorhacks:npm
+
+
+npm-container
+iron:router
+monbro:yaml-config-loader
