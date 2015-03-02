@@ -18,7 +18,6 @@ Meteor.startup(function () {
     config = YamlConfig.getServerConfig();
 
     config.dev ? config = config.devEnv : config = config.liveEnv;
-    console.log(config);
 	 
     // Set the idle timeout checker to 30 seconds
     Meteor.setInterval(function () {
