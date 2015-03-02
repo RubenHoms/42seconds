@@ -1,5 +1,14 @@
-defaultClock: 5
-defaultRounds: 2
-defaultCategory: 'all'
-defaultDifficulty: 'medium'
-defaultNumberOfAnswers: 5
+dev-env:
+  defaultClock: 5
+  defaultRounds: 2
+  defaultCategory: 'all'
+  defaultDifficulty: 'medium'
+  defaultNumberOfAnswers: 5
+live-env:
+  defaultClock: 42
+  defaultRounds: 5
+  defaultCategory: 'all'
+  defaultDifficulty: 'medium'
+  defaultNumberOfAnswers: 5
+
+dev: false

@@ -1,6 +1,6 @@
 nohup*
 .idea/*
-.meteor/*
+.meteor/local/*
 .project
 .settings
 .buildpath
