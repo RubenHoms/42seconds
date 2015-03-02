@@ -20,7 +20,7 @@ Template.showCode.ready = function () {
             Router.go("gameDice");
         }
     }
-}
+};
 
 /**
  * Events for the showCode template
@@ -30,6 +30,6 @@ Template.showCode.events({
      * Event: Click on the 'back' button.z
      */
     'click img.backbutton' : function () {
-        Router.go("lobby");
+        Router.go("/");
     }
 });

@@ -41,6 +41,6 @@ Template.newGame.events({
      * Event: Click on the back button.
      */
     'click img.backbutton' : function () {
-        Router.go("lobby");
+        Router.go("/");
     }
 });

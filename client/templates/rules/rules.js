@@ -17,7 +17,7 @@ Template.rules.events = ({
      * Event: Click on the 'I get the rules' button
      */
     'click input#closeRules': function () {
-        Router.go("lobby");
+        Router.go("/");
     },
     /**
      * Event: Click on the div.rule element
@@ -37,6 +37,6 @@ Template.rules.events = ({
 
     },
     'click img.backbutton':function () {
-        Router.go("lobby");
+        Router.go("/");
     }
 });
