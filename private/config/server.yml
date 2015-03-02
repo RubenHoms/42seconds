@@ -1,10 +1,10 @@
-dev-env:
+devEnv:
   defaultClock: 5
   defaultRounds: 2
   defaultCategory: 'all'
   defaultDifficulty: 'medium'
   defaultNumberOfAnswers: 5
-live-env:
+liveEnv:
   defaultClock: 42
   defaultRounds: 5
   defaultCategory: 'all'
