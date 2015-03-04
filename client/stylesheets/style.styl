@@ -76,41 +76,32 @@ transform(arg)
 html
     background: black
     background-image url('/images/blue-bg.jpg')
-    height 100%
+    height: 100%
 
 body
     font: 16px Kameron
-    width: 320px
     height: 100%
-    margin: 0
 
-body #wrapper 
-    min-height: 100%;
-
-body #wrapper.white
+body #wrapper div.white
     background-color: white
 
 body h3 
     font-size: 27px
     margin: auto 20px
-    text-align: left
 
 body h3.blue
     color: color_darkblue
     font-size 34px
 
-body header 
-    height: 48px
-    width: 320px
+body header
     text-align: center
-    position: relative
     background-color white
 
 body header img
     margin-top: 8px
     height: 27px
 
-body header img:first-child
+body header img.backbutton
     height: 23px
     position: absolute
     left: 11px
@@ -120,10 +111,10 @@ body header img:first-child
 body img.lobby 
     margin: 40px 20px 35px 18px
     height: 110px
+    margin-bottom: 0
+    margin-top: 0
 
 body div.lobby.bluebg
-    height: 260px
-    position absolute
     bottom: 0
     bluebg()
 
@@ -177,26 +168,15 @@ body p span.bar
     background-color: black
     transform(translateY(-3px))
 
-body div.newgame.bluebg
-    padding: 20px 0 0 0
-    height: 392px
-    width: 320px
-    bluebg()
-
-body div.newgame ul 
-    width: 300px
+body div.newgame ul
     list-style-type: none
-    padding: 0
 
 body div.newgame ul li
     text-align: center
-    float: left
     width: 100px
 
 body div.join.bluebg 
     padding: 20px 0 0 0
-    height: 392px
-    width: 320px
     bluebg()
 
 body div.join.bluebg input[type="text"]
@@ -330,7 +310,6 @@ body div.game.bluebg ul.answers li input:checked+label
   color: color_green
 
 body div.rules.bluebg
-  height: 392px;
   bluebg()
 
 body div.rules div.rule0
@@ -338,15 +317,12 @@ body div.rules div.rule0
 
 body div.rules div.rule0.active
   display: block
-  height: 290px;
 
 body div.rules div.rule0.active p
-  width 280px
   margin: 0 20px
 
 body div.rules div.rule0.active p.rulecard
-  margin: 0 23px 
-  width 250px
+  margin: 0 23px
   background-color color_darkblue
   color white
   border-radius 15px
@@ -363,15 +339,12 @@ body div.rules div.rule1
 
 body div.rules div.rule1.active
   display: block
-  height: 290px;
 
 body div.rules div.rule1.active p
-  width 280px
   margin: 0 20px
 
 body div.rules div.rule1.active p.rulecard
   margin: 0 23px
-  width 250px
   background-color color_darkblue
   color white
   border-radius 15px
@@ -387,15 +360,12 @@ body div.rules div.rule2
 
 body div.rules div.rule2.active
   display: block
-  height: 290px;
 
 body div.rules div.rule2.active p
-  width 280px
   margin: 0 20px
 
 body div.rules div.rule2.active p.rulecard
   margin: 0 23px
-  width 250px
   background-color color_darkblue
   color white
   border-radius 15px
@@ -412,15 +382,12 @@ body div.rules div.rule3
 
 body div.rules div.rule3.active
   display: block
-  height: 290px;
 
 body div.rules div.rule3.active p
-  width 280px
   margin: 0 20px
 
 body div.rules div.rule3.active p.rulecard
   margin: 0 23px
-  width 250px
   background-color color_darkblue
   color white
   border-radius 15px
@@ -437,15 +404,12 @@ body div.rules div.rule4
 
 body div.rules div.rule4.active
   display: block
-  height: 290px;
 
 body div.rules div.rule4.active p
-  width 280px
   margin: 0 20px
 
 body div.rules div.rule4.active p.rulecard
   margin: 0 23px
-  width 250px
   background-color color_darkblue
   color white
   border-radius 15px
@@ -462,15 +426,12 @@ body div.rules div.rule5
 
 body div.rules div.rule5.active
   display: block
-  height: 290px;
 
 body div.rules div.rule5.active p
-  width 280px
   margin: 0 20px
 
 body div.rules div.rule5.active p.rulecard
   margin: 0 23px
-  width 250px
   background-color color_darkblue
   color white
   border-radius 15px
@@ -482,21 +443,17 @@ body div.rules div.rule5.active p.rulecard
 body div.rules div.rule5.active img
   width 320px
 
-
 body div.rules div.rule6
   display none
 
 body div.rules div.rule6.active
   display: block
-  height: 290px;
 
 body div.rules div.rule6.active p
-  width 280px
   margin: 0 20px
 
 body div.rules div.rule6.active p.rulecard
   margin: 0 23px
-  width 250px
   background-color color_darkblue
   color white
   border-radius 15px
@@ -511,7 +468,6 @@ body div.rules div.rule6.active img
 body div.rules.bluebg ul.page-indicator 
   margin: 0 20px
   list-style-type none
-  width 280px
   text-align center
   padding 0
 
@@ -544,10 +500,6 @@ a.button
   -moz-border-radius: 5px
   border-radius: 5px
 
-div#wrapper
-    position absolute
-    //animate(bounceIn, 1s, forwards)
-	
 .text_shadow_white_small
     text-shadow #fff 1px 1px 1px
 
@@ -585,29 +537,20 @@ p.subtitle
     height 100%
 
 div.wait
-  background: #222
-  color:      #fff
-  position: absolute
-  top: 0
-  left: 0
-  height:     440px
-  width:      320px
+  padding-top: 20px
 
   img
-    position: absolute
     top: 90px
     left: 150px
 
   h3
     top: 125px
     left: 83px
-    position: absolute
 
   p
     top: 149px
     font-size: 15px
     left: 52px
-    position: absolute
 
 .game-results
   font-size 30px
@@ -646,3 +589,39 @@ div.wait
 
   #blue
     width 20%
+
+.center-text
+  text-align: center
+
+.row-centered
+  text-align:center;
+
+.col-centered
+  display:inline-block;
+  float:none;
+  /* reset the text-align */
+  text-align:left;
+  /* inline-block space fix */
+  margin-right:-4px;
+
+.unchecked-answer
+  text-shadow: #000 2px 2px 1px;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+
+.unchecked-checkbox
+  width 25px
+  height 25px
+  border-radius 12px
+  -webkit-appearance: none
+  background-color white
+  transform(translateY(8px))
+
+.checked-checkbox
+  width 25px
+  height 25px
+  border-radius 12px
+  -webkit-appearance: none
+  background-color color_green
+  transform(translateY(8px))

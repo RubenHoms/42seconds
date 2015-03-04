@@ -1,54 +1,46 @@
 <template name="advancedSettings">
-    <div id="wrapper">
-        <header>
-            <img class="backbutton" src="/images/back-button.png">
-            <img src="/images/logo-small.png">
-        </header>
-        <div class="newgame bluebg">
-            <h3 class="text_shadow_white_big">Settings</h3>
+    {{#contentFor "header"}}
+        {{>backButton}}
+    {{/contentFor}}
+    <div class="newgame bluebg row row-centered">
+        <h3 class="text_shadow_white_big">Settings</h3>
 
-            <p class="subtitle"><span class="bar"></span> Rounds <span class="bar"></span></p>
+        <p class="subtitle"><span class="bar"></span> Rounds <span class="bar"></span></p>
 
-            <div class="advanced_option_slider">
-                <!--a href="#" class="previous option-nav">&lt;</a>
-                <span class="option">3 rounds</span>
-                <span class="option">5 rounds</span>
-                <span class="option">10 rounds</span>
-                <a href="#" class="previous option-nav">&gt;</a-->
-                <select name="rounds">
-                    <option value="1">1 round</option>
-                    <option value="3">3 rounds</option>
-                    <option value="5" selected="selected">5 rounds</option>
-                    <option value="10">10 rounds</option>
-                </select>
-            </div>
-
-            <p class="subtitle"><span class="bar"></span> Category <span class="bar"></span></p>
-
-            <div class="advanced_option_slider">
-                <select name="category">
-                    {{#each categories}}
-                        <option>{{this}}</option>
-                    {{/each}}
-                </select>
-            </div>
-
-            <p class="subtitle"><span class="bar"></span> Difficulty <span class="bar"></span></p>
-
-            <div class="advanced_option_slider">
-                <select name="difficulty">
-                    {{#each difficulties}}
-                        {{#if this.selected}}
-                            <option selected="selected">{{this.name}}</option>
-                        {{else}}
-                            <option>{{this.name}}</option>
-                        {{/if}}
-
-                    {{/each}}
-                </select>
-            </div>
-
-            <input type="button" id="startgame" class="startgame" value="Start game"/>
+        <div class="advanced_option_slider">
+            <select name="rounds">
+                <option value="1">1 round</option>
+                <option value="3">3 rounds</option>
+                <option value="5" selected="selected">5 rounds</option>
+                <option value="10">10 rounds</option>
+            </select>
         </div>
+
+        <p class="subtitle"><span class="bar"></span> Category <span class="bar"></span></p>
+
+        <div class="advanced_option_slider">
+            <select name="category">
+                {{#each categories}}
+                    <option>{{this}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <p class="subtitle"><span class="bar"></span> Difficulty <span class="bar"></span></p>
+
+        <div class="advanced_option_slider">
+            <select name="difficulty">
+                {{#each difficulties}}
+                    {{#if this.selected}}
+                        <option selected="selected">{{this.name}}</option>
+                    {{else}}
+                        <option>{{this.name}}</option>
+                    {{/if}}
+
+                {{/each}}
+            </select>
+        </div>
+
+        <input type="button" id="startgame" class="startgame" value="Start game"/>
     </div>
 </template>

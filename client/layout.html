@@ -1,3 +1,15 @@
 <template name="layout">
-    {{>yield}}
+    <div id="wrapper" class="container-fluid">
+        <div class="row">
+            <header>
+                {{> yield "header"}}
+                <img class="headerlogo" src="/images/logo-small.png">
+            </header>
+        </div>
+        {{>yield}}
+    </div>
+</template>
+
+<template name="backButton">
+    <a href="/"><img class="backbutton" src="/images/back-button.png"></a>
 </template>

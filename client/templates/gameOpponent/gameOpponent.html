@@ -1,40 +1,34 @@
 <template name="gameOpponent">
-    <div id="wrapper">
-        <header>
-            <img src="/images/logo-small.png">
-        </header>
-        <div class="game bluebg">
-            <h3 class="text_shadow_white_big">Round {{roundnumber}}</h3>
+    <div class="game bluebg row row-centered">
+        <h3 class="text_shadow_white_big">Round {{roundnumber}}</h3>
 
-            <div class="score">Score {{score}}</div>
-            <p class="waiting_dice">Waiting for other team to roll the dice.</p>
-            <ul class="answers text_shadow_black_big">
-                {{#each checkedOff}}
-                    <li id="answer-{{id}}" style="text-decoration: line-through" class="inactive"><input type="checkbox"
-                                                                                                         name="{{id}}"
-                                                                                                         checked="checked"><label
-                            for="answer-{{id}}">{{this.answer}}</label></li>
-                {{/each}}
-            </ul>
-            <div class="clock"></div>
-            <div class="countdown">
-                <img src="images/wijzerplaat.png">
+        <div class="score">Score {{score}}</div>
+        <p class="waiting_dice">Waiting for other team to roll the dice.</p>
+        <ul class="answers text_shadow_black_big">
+            {{#each checkedOff}}
+                <li id="answer-{{id}}" style="text-decoration: line-through" class="inactive">
+                    <input type="checkbox" name="{{id}}" checked="checked" style="float:left">
+                    <label for="answer-{{id}}">{{this.answer}}</label></li>
+            {{/each}}
+        </ul>
+        <div class="clock"></div>
+        <div class="countdown">
+            <img src="images/wijzerplaat.png">
 
-                <div class="clock run">
-                    <div class="pointer">
-                        <img src="images/wijzer.png">
+            <div class="clock run">
+                <div class="pointer">
+                    <img src="images/wijzer.png">
+                </div>
+                <div class="clock-left">
+                    <div class="half-circle">
                     </div>
-                    <div class="clock-left">
-                        <div class="half-circle">
-                        </div>
-                    </div>
-                    <div class="clock-right">
-                        <div class="half-circle">
-                        </div>
+                </div>
+                <div class="clock-right">
+                    <div class="half-circle">
                     </div>
                 </div>
             </div>
         </div>
-        {{ready}}
     </div>
+    {{ready}}
 </template>

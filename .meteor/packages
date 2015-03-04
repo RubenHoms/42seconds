@@ -13,3 +13,5 @@ meteorhacks:npm
 npm-container
 iron:router
 monbro:yaml-config-loader
+nemo64:bootstrap
+less

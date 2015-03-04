@@ -11,4 +11,4 @@ liveEnv:
   defaultDifficulty: 'medium'
   defaultNumberOfAnswers: 5
 
-dev: false
+dev: true

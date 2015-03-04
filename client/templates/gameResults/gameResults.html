@@ -1,38 +1,34 @@
 <template name="gameResults">
-    <div id="wrapper">
-        <header>
-            <img src="/images/back-button.png">
-            <img src="/images/logo-small.png">
-        </header>
-        <div class="game-results bluebg">
-            <h3 class="text_shadow_white_small">Scoreboard</h3>
-            <table>
-                <thead>
-                <tr>
-                    <th id="round"></th>
-                    {{#each teams}}
-                        <th id="{{this.name}}" class="scores">{{this.name}}</th>
-                    {{/each}}
-                </tr>
-                </thead>
-                <tbody>
-                {{#each roundScores}}
-                    <tr>
-                        <td>Round {{this.round}}</td>
-                        <td class="scores">{{this.red}}</td>
-                        <td class="scores">{{this.blue}}</td>
-                    </tr>
+    <div class="game-results bluebg row row-centered">
+        <h3 class="text_shadow_white_small">Scoreboard</h3>
+        <table>
+            <thead>
+            <tr>
+                <th id="round"></th>
+                {{#each teams}}
+                    <th id="{{this.name}}" class="scores">{{this.name}}</th>
                 {{/each}}
-                <tr class="total">
-                    <td>Total</td>
-                    <td class="scores">{{teamRedScore}}</td>
-                    <td class="scores">{{teamBlueScore}}</td>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each roundScores}}
+                <tr>
+                    <td>Round {{this.round}}</td>
+                    <td class="scores">{{this.red}}</td>
+                    <td class="scores">{{this.blue}}</td>
                 </tr>
-                </tbody>
-            </table>
-        </div>
+            {{/each}}
+            <tr class="total">
+                <td>Total</td>
+                <td class="scores">{{teamRedScore}}</td>
+                <td class="scores">{{teamBlueScore}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row row-centered">
         {{#unless hasWinner}}
-        <input type="button" id="scoreok" class="scoreok" value="Done!"/>
+            <input type="button" id="scoreok" class="scoreok" value="Done!"/>
         {{else}}
             <div>{{winner}} has won the game!</div>
             <input type="button" id="retry" value="Try again">

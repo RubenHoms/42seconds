@@ -80,7 +80,7 @@ Template.gameActiveTeam.score = function () {
     if(team) {
         return team.score;
     }
-}
+};
 
 /**
  * Event handlers for the gameActiveTeam template.

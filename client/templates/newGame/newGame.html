@@ -1,23 +1,24 @@
 <template name="newGame">
-    <div id="wrapper">
-        <header>
-            <img class="backbutton" src="/images/back-button.png">
-            <img src="/images/logo-small.png">
-        </header>
-        <div class="newgame bluebg">
-            <h3 class="text_shadow_white_big">Eya! Choose your gametype here..</h3>
-            <ul class="newgame text_shadow_white_small">
-                <li>Rounds<br><strong>5</strong></li>
-                <li>Category<br><strong>All</strong></li>
-                <li>Difficulty<br><strong>Medium</strong></li>
-            </ul>
+    {{#contentFor "header"}}
+        {{>backButton}}
+    {{/contentFor}}
+    <div class="row">
+        <h3 class="text_shadow_white_big center-text">Eya! Choose your gametype here..</h3>
+    </div>
+    <div class="newgame bluebg row row-centered">
+        <ul class="newgame text_shadow_white_small">
+            <li class="col-xs-4 col-centered">Rounds<br><strong>5</strong></li>
+            <li class="col-xs-4 col-centered">Category<br><strong>All</strong></li>
+            <li class="col-xs-4 col-centered">Difficulty<br><strong>Medium</strong></li>
+        </ul>
+    </div>
 
-            <input type="button" id="startgame" class="startgame" value="Quick match"/>
+    <div class="newgame bluebg row row-centered">
+        <input type="button" id="startgame" class="startgame" value="Quick match"/>
 
-            <p><span class="bar"></span> or <span class="bar"></span></p>
-            <input type="button" id="advancedSettings" class="advancedsettings blue" value="Advanced settings">
+        <p><span class="bar"></span> or <span class="bar"></span></p>
+        <input type="button" id="advancedSettings" class="advancedsettings blue" value="Advanced settings">
 
-            <p>Choose your options</p>
-        </div>
+        <p>Choose your options</p>
     </div>
 </template>
