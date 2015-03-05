@@ -9,18 +9,19 @@
  * This template serves as the page where the user sees his code which he then has to
  * give to the other team.
  */
-
-/**
- * Method for waiting to get ready to start the game.
- */
-Template.showCode.ready = function () {
-    var game = Games.findOne({'gamecode':Session.get('gamecode')});
-    if (game) {
-        if (game.teams.length >= 2) {
-            Router.go("gameDice");
+Template.showCode.helpers({
+    /**
+     * Method for waiting to get ready to start the game.
+     */
+    ready: function() {
+        var game = Games.findOne({'gamecode':Session.get('gamecode')});
+        if (game) {
+            if (game.teams.length >= 2) {
+                Router.go("gameDice");
+            }
         }
     }
-};
+});
 
 /**
  * Events for the showCode template

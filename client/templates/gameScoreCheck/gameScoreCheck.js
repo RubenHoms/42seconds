@@ -10,17 +10,18 @@
  * or were guessed wrong in the 42 seconds that the user could play. This screen is presented to the non-playing
  * team, the other team has to wait for them to confirm the score.
  */
-
-/**
- * The answers which were asked in the game.
- * @return {Array}  The answers
- */
-Template.gameScoreCheck.answers = function () {
-    var game = Games.findOne({'gamecode':Session.get('gamecode')});
-    if (game) {
-        return game.answers;
+Template.gameScoreCheck.helpers({
+    /**
+     * The answers which were asked in the game.
+     * @return {Array}  The answers
+     */
+    answers: function() {
+        var game = Games.findOne({'gamecode':Session.get('gamecode')});
+        if (game) {
+            return game.answers;
+        }
     }
-};
+});
 
 /**
  * Events for the gameScoreCheck template

@@ -9,21 +9,19 @@
  * This templated serves as a place for players to set the advanced settings such as difficulty, rounds and
  * other stuff for a new game.
  */
+Template.advancedSettings.helpers({
+    categories: function() {
+        return ['All','Nerdy','Films','Acteurs','Sporten','Landen','Televisie','Steden'];
+    },
+
+    difficulties: function() {
+        return [{'name': 'Super easy'},{'name':'Easy'},{'name':'Medium','selected':true},{'name':'Hard'},{'name':'Power extreme'}];
+    }
+});
 
 /**
  * Events for the advancedSettings template
  */
-
-Template.advancedSettings.categories = function () {
-	var categories = new Array('All','Nerdy','Films','Acteurs','Sporten','Landen','Televisie','Steden');
-	return categories;
-};
-
-Template.advancedSettings.difficulties = function () {
-	var difficulties = new Array({'name': 'Super easy'},{'name':'Easy'},{'name':'Medium','selected':true},{'name':'Hard'},{'name':'Power extreme'});
-	return difficulties;
-}
-
 Template.advancedSettings.events({
     /**
      * Event: Click on the 'start game' button

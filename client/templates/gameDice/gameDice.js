@@ -61,22 +61,3 @@ Template.gameDice.events({
 		throwDice();
     }
 });
-
-/**
- * Gets the result of the dice throw.
- * @return {Object} The dice roll object
- */
-Template.gameDice.diceThrow = function () {
-    return Dice.findOne({'access_code':Session.get('gamecode')});
-};
-
-/**
- * Gets the number of this round.
- * @return {Number} The number of the round
- */
-Template.gameDice.roundnumber = function () {
-    var game = Games.findOne({'gamecode' : Session.get('gamecode')});
-    if(game) {
-        return game.round;
-    }
-};

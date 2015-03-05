@@ -9,78 +9,79 @@
  * This template serves as the main game template. Here the user wil see a number of answers which
  * he then has to explain to his other counterpart, all until the 42 seconds run out.
  */
+Template.gameActiveTeam.helpers({
+    /**
+     * Gets the number of the round.
+     * @return {Number} The round number.
+     */
+    roundnumber: function() {
+        var game = Games.findOne({'gamecode' : Session.get('gamecode')});
+        if(game) {
+            return game.round;
+        }
+    },
 
-/**
- * Gets the number of the round.
- * @return {Number} The round number.
- */
-Template.gameActiveTeam.roundnumber = function () {
-    var game = Games.findOne({'gamecode' : Session.get('gamecode')});
-    if(game) {
-        return game.round;
-    }
-}
+    /**
+     * Gets the answers which the user has to guess.
+     * @return {Array}  The array with answers.
+     */
+    answers: function() {
+        var game = Games.findOne({'gamecode' : Session.get('gamecode')});
+        if(game) {
+            return game.answers;
+        }
+    },
 
-/**
- * Gets the answers which the user has to guess.
- * @return {Array}  The array with answers.
- */
-Template.gameActiveTeam.answers = function () {
-    var game = Games.findOne({'gamecode' : Session.get('gamecode')});
-    if(game) {
-        return game.answers;
-    }
-}
+    /**
+     * Get the handicap of the current round.
+     * @return {Number} The handicap.
+     */
+    handicap: function() {
+        var game = Games.findOne({'gamecode' : Session.get('gamecode')});
+        if(game) {
+            return game.handicap;
+        }
+    },
 
-/**
- * Get the handicap of the current round.
- * @return {Number} The handicap.
- */
-Template.gameActiveTeam.handicap = function () {
-    var game = Games.findOne({'gamecode' : Session.get('gamecode')});
-    if(game) {
-        return game.handicap;
-    }
-}
-
-/**
- * An event handler on the event when the clock has reached 0.
- * When the time has run out the user will be redirected to the gameScoreCheckWait template.
- */
-Template.gameActiveTeam.ready = function () {
-    var game = Games.findOne({'gamecode' : Session.get('gamecode')});
-    if(game) {
-    	if(game.handicap != null && $('p.waiting_dice')) {
-    		$('p.waiting_dice').remove();
-    	}
+    /**
+     * An event handler on the event when the clock has reached 0.
+     * When the time has run out the user will be redirected to the gameScoreCheckWait template.
+     */
+    ready: function() {
+        var game = Games.findOne({'gamecode' : Session.get('gamecode')});
+        if(game) {
+            if(game.handicap != null && $('p.waiting_dice')) {
+                $('p.waiting_dice').remove();
+            }
 
 
-	    var answers = new Array();
-	    if(!game.answers || !game || !game.answers.length) {
-	        return 0;
-	    }
-	    for(var i=0; i<game.answers.length; i++) {
-	        if(game.answers[i].checkedOff && !typeof game.answers[i].checkedOff === "undefined") {
-	            answers.push(game.answers[i]);
-	        }
-	    }
-    	
-        if(game.clock === 0 || answers.length === game.answers.length) {
-            Router.go("gameScoreCheckWait");
+            var answers = new Array();
+            if(!game.answers || !game || !game.answers.length) {
+                return 0;
+            }
+            for(var i=0; i<game.answers.length; i++) {
+                if(game.answers[i].checkedOff && !typeof game.answers[i].checkedOff === "undefined") {
+                    answers.push(game.answers[i]);
+                }
+            }
+
+            if(game.clock === 0 || answers.length === game.answers.length) {
+                Router.go("gameScoreCheckWait");
+            }
+        }
+    },
+
+    /**
+     * Gets the score of the current game.
+     * @return {Number} The score.
+     */
+    score: function() {
+        var team = Teams.findOne(Session.get('team_id'));
+        if(team) {
+            return team.score;
         }
     }
-}
-
-/**
- * Gets the score of the current game.
- * @return {Number} The score.
- */
-Template.gameActiveTeam.score = function () {
-    var team = Teams.findOne(Session.get('team_id'));
-    if(team) {
-        return team.score;
-    }
-};
+});
 
 /**
  * Event handlers for the gameActiveTeam template.
