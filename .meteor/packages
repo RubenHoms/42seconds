@@ -3,7 +3,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-autopublish
 insecure
 stylus
 standard-app-packages
@@ -15,3 +14,5 @@ iron:router
 monbro:yaml-config-loader
 nemo64:bootstrap
 less
+mizzao:user-status
+accounts-password

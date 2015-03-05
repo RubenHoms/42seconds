@@ -20,10 +20,8 @@ Template.newGame.events({
      */
     'click input#startgame':function () {
         Meteor.call('startNewGame', Session.get('team_id'), function (error, game) {
-            Template.showCode.team = game.teams.length;
             Session.set('teamNumber',game.teams.length);
             Session.set('gamecode', game.gamecode);
-            Template.showCode.gamecode = game.gamecode;
             Router.go("showCode");
         });
     },
@@ -32,9 +30,7 @@ Template.newGame.events({
      * Event: Click on the 'Advanced Settings' button.
      */
     'click input#advancedSettings':function () {
-        Meteor.call('advancedSettings', function (error, gamecode) {
-            Router.go("advancedSettings");
-        });
+        Router.go("advancedSettings");
     },
 
     /**

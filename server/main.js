@@ -29,14 +29,6 @@ Meteor.methods({
     },
 
     /**
-     * Retunrs the string 'advancedSettings' to let the client know what game type to pick (advanced settings)
-     * @return {String} advancedSettings
-     */
-    advancedSettings:function () {
-        return 'advancedSettings';
-    },
-
-    /**
      * Returns the string 'rules' to let the client know what page to load (rules)
      * @return {String} rules
      */
@@ -235,3 +227,27 @@ Meteor.methods({
         Games.update({'gamecode': gamecode}, {'$set':{'nextRound':false}});
     }
 });
+
+/** Publish functions */
+
+// User status for tracking it on the front-end
+Meteor.publish("userStatus", function() {
+    return Meteor.users.find({ "status.online": true });
+});
+
+Meteor.publish("games", function() {
+    return Games.find();
+});
+
+Meteor.publish("teams", function() {
+    return Teams.find();
+});
+
+Meteor.publish("dice", function() {
+    return Dice.find();
+});
+
+Meteor.publish("answers", function() {
+    return Answers.find();
+});
+/** /Publish functions */

@@ -33,11 +33,6 @@ Template.advancedSettings.events({
 
         // Start a new game
         Meteor.call('startNewGame', Session.get('team_id'), rounds, category, difficulty, function (error, game) {
-            Template.showCode.rounds = rounds;
-            Template.showCode.category = category;
-            Template.showCode.difficulty = difficulty;
-            Template.showCode.gamecode = game.gamecode;
-            Template.showCode.team = game.teams.length;
             Session.set('teamNumber',game.teams.length);
             Session.set('gamecode',game.gamecode);
             Router.go("showCode");

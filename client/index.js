@@ -18,4 +18,20 @@ Meteor.startup(function () {
     Meteor.call('createTeam', function(error, team_id) {
         Session.set('team_id', team_id);
     });
+
+    /** Subscription functions */
+    Meteor.subscribe("userStatus");
+    Meteor.subscribe("games");
+    Meteor.subscribe("teams");
+    Meteor.subscribe("dice");
+    Meteor.subscribe("answers");
+    /** /Subscription functions */
+
+    if(!Meteor.user()) {
+        Accounts.createUser( { username: Random.id(), password: Random.id() }, function( err ) {
+            if( err ) {
+                console.log( "Couldn't create user account, error:", err );
+            }
+        } );
+    }
 });

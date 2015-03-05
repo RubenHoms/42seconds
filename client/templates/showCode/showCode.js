@@ -20,6 +20,10 @@ Template.showCode.helpers({
                 Router.go("gameDice");
             }
         }
+    },
+
+    gamecode: function() {
+        return Session.get("gamecode");
     }
 });
 
