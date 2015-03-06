@@ -44,34 +44,6 @@ Template.gameActiveTeam.helpers({
     },
 
     /**
-     * An event handler on the event when the clock has reached 0.
-     * When the time has run out the user will be redirected to the gameScoreCheckWait template.
-     */
-    ready: function() {
-        var game = Games.findOne({'gamecode' : Session.get('gamecode')});
-        if(game) {
-            if(game.handicap != null && $('p.waiting_dice')) {
-                $('p.waiting_dice').remove();
-            }
-
-
-            var answers = new Array();
-            if(!game.answers || !game || !game.answers.length) {
-                return 0;
-            }
-            for(var i=0; i<game.answers.length; i++) {
-                if(game.answers[i].checkedOff && !typeof game.answers[i].checkedOff === "undefined") {
-                    answers.push(game.answers[i]);
-                }
-            }
-
-            if(game.clock === 0 || answers.length === game.answers.length) {
-                Router.go("gameScoreCheckWait");
-            }
-        }
-    },
-
-    /**
      * Gets the score of the current game.
      * @return {Number} The score.
      */

@@ -18,21 +18,18 @@ var set_handicap = function(handicap) {
         console.log("gamecode not set");
         return;
     }
-    Meteor.call("setRoundHandicap", Session.get("gamecode"), handicap, function(err, res) {
+    Meteor.call("setRoundHandicap", Session.get("gamecode"), Meteor.userId(), handicap, function(err, res) {
         if(err) {
             console.log("Error while setting handicap:", err);
             return;
         }
         // Set a timeout so people have time to actually see what they threw
         Meteor.setTimeout(function() {
-            Meteor.call('startClock', Session.get('gamecode'), function (err, res) {
+            Meteor.call('startClock', Session.get('gamecode'), Meteor.userId(), function (err, res) {
                 if(err) {
                     console.log("Error while starting clock:", err);
-                } else {
-                    console.log("Game started!");
                 }
             });
-            Router.go("gameActiveTeam");
         }, 1500);
     });
 };

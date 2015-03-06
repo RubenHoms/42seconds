@@ -19,10 +19,8 @@ Template.newGame.events({
      * Event: Click on the 'Quick Match' button.
      */
     'click input#startgame':function () {
-        Meteor.call('startNewGame', Session.get('team_id'), function (error, game) {
-            Session.set('teamNumber',game.teams.length);
+        Meteor.call('startNewGame', Meteor.userId(), function (error, game) {
             Session.set('gamecode', game.gamecode);
-            Router.go("showCode");
         });
     },
 

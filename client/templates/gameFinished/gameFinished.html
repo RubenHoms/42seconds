@@ -1,0 +1,37 @@
+<template name="gameFinished">
+    <div class="game-results bluebg row row-centered">
+        <h3 class="text_shadow_white_small">Game Finished</h3>
+        <table>
+            <thead>
+            <tr>
+                <th id="round"></th>
+                <th id="red" class="scores">Team Red</th>
+                <th id="blue" class="scores">Team Blue</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each roundScores}}
+                <tr>
+                    <td>Round {{this.index}}</td>
+                    <td class="scores">{{scoreRed this.score this.user}}</td>
+                    <td class="scores">{{scoreBlue this.score this.user}}</td>
+                </tr>
+            {{/each}}
+            <tr class="total">
+                <td>Total</td>
+                <td class="scores">{{teamRedScore}}</td>
+                <td class="scores">{{teamBlueScore}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row row-centered">
+        {{#unless hasWinner}}
+            <input type="button" id="scoreok" class="scoreok" value="Done!"/>
+        {{else}}
+            <div>{{winner}} has won the game!</div>
+            <input type="button" id="retry" value="Try again">
+        {{/unless}}
+    </div>
+    {{ready}}
+</template>

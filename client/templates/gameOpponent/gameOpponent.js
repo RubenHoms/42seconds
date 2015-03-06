@@ -40,43 +40,6 @@ Template.gameOpponent.helpers({
     },
 
     /**
-     * Checks if the game is over (clock === 0), and redirects user if that's the case.
-     */
-    ready: function() {
-        var game = Games.findOne({'gamecode' : Session.get('gamecode')});
-        if(game) {
-
-            if(!game.answers || !game || !game.answers.length) {
-                return 0;
-            }
-
-
-            if(game.handicap != null && $('p.waiting_dice')) {
-                $('p.waiting_dice').remove();
-            }
-
-            var answers = new Array();
-            for(var i=0; i<game.answers.length; i++) {
-                if(game.answers[i].checkedOff && !typeof game.answers[i].checkedOff === "undefined") {
-                    answers.push(game.answers[i]);
-                }
-            }
-
-            if(game.clock === 0 || answers.length === game.answers.length) {
-                Router.go("gameScoreCheck");
-            }
-            if(answers.length === game.answers.length) {
-                Router.go("gameScoreCheck");
-            }
-            if(game.handicap != null && $('div.countdown.run').length==0) {
-                // run the CSS timer animation
-                $('.pointer').addClass('run');
-                $('div.countdown').addClass('run');
-            }
-        }
-    },
-
-    /**
      * Get the score of the current game.
      * @return {Number} The score.
      */
@@ -87,4 +50,10 @@ Template.gameOpponent.helpers({
         }
     }
 });
+
+Template.gameOpponent.rendered = function() {
+    // Run the CSS timer animation ToDo: Run when dice is thrown
+    $('.pointer').addClass('run');
+    $('div.countdown').addClass('run');
+};
 

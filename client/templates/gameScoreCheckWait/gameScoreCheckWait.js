@@ -8,17 +8,4 @@
  *
  * This template serves as the page where the user waits in order for the other teams to check their score.
  */
-Template.gameScoreCheckWait.helpers({
-    /**
-     * Ready event for checking if the score is confirmed.
-     * If the score is confirmed it will redirect the user, else it will show the waiting screen.
-     */
-    ready: function() {
-        var game = Games.findOne({'gamecode' : Session.get('gamecode')});
-        if (game) {
-            if (game.scoreConfirmed) {
-                Router.go("gameResults");
-            }
-        }
-    }
-});
+Template.gameScoreCheckWait.helpers({});

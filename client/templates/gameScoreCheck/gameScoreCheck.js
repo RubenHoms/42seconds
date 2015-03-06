@@ -34,72 +34,19 @@ Template.gameScoreCheck.events({
     'click input.nextround': function () {
         console.log("Scores confirmed");
         var game = Games.findOne({'gamecode' : Session.get('gamecode')});
-        var team = Teams.findOne(game.team._id);
-        var answers = new Array();
-        for(var i=0; i<game.answers.length; i++) {
-            if(game.answers[i].checkedOff) {
-                answers.push(game.answers[i]);
-            }
-        }
-        var correctAnswers = new Array();
 
-        for(var i=0; i<game.answers.length; i++) {
-        	answer = game.answers[i];
-            if(answer.checkedOff) {
-                correctAnswers.push(answer);
-                answer = Answers.find({'answer':answer.answer}).fetch();
-                answer = answer[0];
-	            if(typeof answer.guessed == 'undefined') {
-	            	var guessed = 0;
-	            } else {
-	            	var guessed = answer.guessed;
-	            }
-	            if(typeof answer.shown == 'undefined') {
-	            	var shown = 0;
-	            } else {
-	            	var shown = answer.shown;
-	            }
-	            var newGuessed = (guessed*1)+1;
-	            Answers.update({'_id':answer._id}, {$set:{'guessed':newGuessed,'guess_percentage':(answer.shown/newGuessed)}});
-            }
-        }
-        var handicap = Dice.findOne({ 'access_code': Session.get('gamecode')}).throw;
-        var score = (answers.length - handicap) < 0 ? team.score : (answers.length - handicap) + team.score;
-        Teams.update(game.team._id, {'$set': {'score' : score}});
+        var correctAnswers = _.filter( game.answers, function( answer ) {
+            return answer.checkedOff;
+        });
 
-        var scores = game.roundScores || new Array();
+        var handicap = _.last(game.roundHandicaps).handicap;
+        score = correctAnswers.length - handicap;
 
-        // My team
-        var myTeam = Teams.findOne(Session.get('team_id'));
-
-        // All the teams in the game.
-        var teams = Teams.find({'gamecode': Session.get('gamecode')}).fetch();
-
-        // The other team
-        var otherTeam;
-
-        // Get the other team
-        if(teams && myTeam) {
-            for(var i=0; i<teams.length; i++) {
-                if(teams[i]._id !== myTeam._id) {
-                    otherTeam = teams[i];
-                }
-            }
-        }
-
-        // Set the new scores for the record
-        if(myTeam.name === "Team Red") {
-            scores.push({'blue': score, 'red': myTeam.score, 'round':scores.length+1});
-        } else if(myTeam.name === "Team Blue") {
-            scores.push({'red': score, 'blue' : myTeam.score, 'round':scores.length+1})
-        }
-
-        Meteor.call("confirmScore", Session.get("gamecode"), scores, function(err, res) {
+        Meteor.call("confirmScore", Session.get("gamecode"), score, Meteor.userId(), function(err, res) {
             if(err) {
                 console.log("Error while confirming score:", err);
             }
         });
-        Router.go("gameResults");
     },
     /**
      * Event: Click on the checkbox before an answer

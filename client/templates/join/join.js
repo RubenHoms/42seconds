@@ -26,12 +26,10 @@ Template.join.events({
         	$('#gamecode').focus();
         } else {
 	        Session.set('gamecode',gamecode);
-	        Meteor.call('joinedGame', gamecode, Session.get('team_id'), function (error, game) {
+	        Meteor.call('joinGame', gamecode, Meteor.userId(), function (error, game) {
 	            if (error) {
-	                console.log(error);
-	                return;
+	                console.log("Error while joining game:", error);
 	            }
-                Router.go("gameOpponent");
 	        });
         }
     },

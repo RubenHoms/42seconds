@@ -32,10 +32,8 @@ Template.advancedSettings.events({
         var difficulty = $('select[name="difficulty"]').val();
 
         // Start a new game
-        Meteor.call('startNewGame', Session.get('team_id'), rounds, category, difficulty, function (error, game) {
-            Session.set('teamNumber',game.teams.length);
+        Meteor.call('startNewGame', Meteor.userId(), rounds, category, difficulty, function (error, game) {
             Session.set('gamecode',game.gamecode);
-            Router.go("showCode");
         });
     },
     
