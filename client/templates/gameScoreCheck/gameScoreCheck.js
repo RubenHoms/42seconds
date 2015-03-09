@@ -51,7 +51,7 @@ Template.gameScoreCheck.events({
      * Event: Click on the checkbox before an answer
      * Checks or unchecks the answer.
      */
-    'click input.checkbox': function () {
+    'click input': function () {
         var game = Games.findOne({'gamecode' : Session.get('gamecode')});
         var answers = game.answers;
         for(i=0;i<answers.length;i++) {

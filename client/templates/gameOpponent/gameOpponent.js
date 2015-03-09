@@ -55,12 +55,27 @@ Template.gameOpponent.helpers({
                 return Template.gameFinished.__helpers[" teamBlueTotal"]();
             }
         }
+    },
+
+    /**
+     * Function which will automatically start the clock animation once the server has
+     * started the clock.
+     */
+    runClock: function() {
+        var game = Games.findOne({'gamecode' : Session.get('gamecode')});
+        if(game) {
+            var pointer = $('.pointer'),
+                countdown = $('div.countdown');
+            if( game.clock > 0 && game.clock < 42 && !pointer.hasClass('run') && !countdown.hasClass('run') ) {
+                pointer.addClass('run');
+                countdown.addClass('run');
+            }
+        }
     }
 });
 
 Template.gameOpponent.rendered = function() {
     // Run the CSS timer animation ToDo: Run when dice is thrown
-    $('.pointer').addClass('run');
-    $('div.countdown').addClass('run');
+
 };
 
