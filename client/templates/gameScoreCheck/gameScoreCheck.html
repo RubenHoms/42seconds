@@ -1,33 +1,21 @@
 <template name="gameScoreCheck">
-<div class="game bluebg row row-centered">
-    <h3>Score check</h3>
-    <ul class="answers text_shadow_black_big">
-        {{#each answers}}
-            {{#if this.checkedOff}}
-                <li id="answer-{{id}}" style="text-decoration: line-through" class="inactive">
-                    <label for="{{this.answer}}">{{this.answer}}</label>
-                    <input
-                            type="checkbox"
-                            class="checkbox"
-                            id="{{this.answer}}"
-                            name="{{this.answer}}"
-                            checked="checked"
-                            style="float:left">
-                </li>
-            {{else}}
+    <div class="game bluebg row row-centered">
+        <h3>Score check</h3>
+        <ul class="text_shadw_black_big no-bullet-list">
+            {{#each answers}}
                 <li>
-                    <input
-                            type="checkbox"
-                            class="checkbox"
-                            id="{{this.answer}}"
-                            name="{{this.answer}}"
-                            style="float:left">
-                    <label>{{this.answer}}</label>
+                    <label class="label-align">
+                        {{#if this.checkedOff}}
+                            <input type="checkbox" class="left checked-checkbox">
+                            <span class="checked-answer">{{this.answer}}</span>
+                        {{else}}
+                            <input type="checkbox" class="left unchecked-checkbox">
+                            <span class="unchecked-answer">{{this.answer}}</span>
+                        {{/if}}
+                    </label>
                 </li>
-            {{/if}}
-        {{/each}}
-
-    </ul>
+            {{/each}}
+        </ul>
         <input type="button" id="nextround" class="nextround" value="Done!"/>
     </div>
     {{ gameState }}

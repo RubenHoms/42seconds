@@ -44,14 +44,29 @@ Template.gameActiveTeam.helpers({
     },
 
     /**
-     * Gets the score of the current game.
+     * Gets the current score of the user.
      * @return {Number} The score.
      */
     score: function() {
-        var team = Teams.findOne(Session.get('team_id'));
-        if(team) {
-            return team.score;
+        var game = Games.findOne({'gamecode' : Session.get('gamecode')});
+        if(game) {
+            if( Meteor.userId() == game.users[0] ) {
+                // I'm in team red
+                return Template.gameFinished.__helpers[" teamRedTotal"]();
+            }
+            if( Meteor.userId() == game.users[1] ) {
+                // I'm in the blue team
+                return Template.gameFinished.__helpers[" teamBlueTotal"]();
+            }
         }
+    },
+
+    checkboxClass: function( checkedOff ) {
+        return checkedOff ? 'checked-checkbox' : 'unchecked-checkbox';
+    },
+
+    answerClass: function( checkedOff ) {
+        return checkedOff ? 'checked-answer' : 'unchecked-answer';
     }
 });
 
@@ -63,7 +78,6 @@ Template.gameActiveTeam.events({
      * Event: Click on the answer to check or uncheck it.
      */
     'click input': function () {
-        $("input[id='" + this.answer + "']").parent().css('text-decoration','line-through');
         var game = Games.findOne({'gamecode' : Session.get('gamecode')});
         var answers = game.answers;
         for(i=0;i<answers.length;i++) {

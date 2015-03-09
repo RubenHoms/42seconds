@@ -32,7 +32,6 @@ Template.gameScoreCheck.events({
      * Confirms the answers.
      */
     'click input.nextround': function () {
-        console.log("Scores confirmed");
         var game = Games.findOne({'gamecode' : Session.get('gamecode')});
 
         var correctAnswers = _.filter( game.answers, function( answer ) {
@@ -53,7 +52,6 @@ Template.gameScoreCheck.events({
      * Checks or unchecks the answer.
      */
     'click input.checkbox': function () {
-        console.log("Input ok click", this);
         var game = Games.findOne({'gamecode' : Session.get('gamecode')});
         var answers = game.answers;
         for(i=0;i<answers.length;i++) {

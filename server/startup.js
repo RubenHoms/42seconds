@@ -35,4 +35,9 @@ Meteor.startup(function () {
         // No answer like this found. Insert into the collection.
         Answers.insert(json[i]);
     }
+
+    // Set a timeout of 10 minutes to clean up the finished games.
+    Meteor.setTimeout( function() {
+        Games.remove( {'finished': true} );
+    }, 60 * 10 * 1000)
 });

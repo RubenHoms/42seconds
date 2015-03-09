@@ -44,9 +44,16 @@ Template.gameOpponent.helpers({
      * @return {Number} The score.
      */
     score: function() {
-        var team = Teams.findOne(Session.get('team_id'));
-        if(team) {
-            return team.score;
+        var game = Games.findOne({'gamecode' : Session.get('gamecode')});
+        if(game) {
+            if( Meteor.userId() == game.users[0] ) {
+                // I'm in team red
+                return Template.gameFinished.__helpers[" teamRedTotal"]();
+            }
+            if( Meteor.userId() == game.users[1] ) {
+                // I'm in the blue team
+                return Template.gameFinished.__helpers[" teamBlueTotal"]();
+            }
         }
     }
 });

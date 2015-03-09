@@ -14,10 +14,6 @@
  * @param {Number} handicap  The handicap (int of 0-2)
  */
 var set_handicap = function(handicap) {
-    if (!Session.get('gamecode')) {
-        console.log("gamecode not set");
-        return;
-    }
     Meteor.call("setRoundHandicap", Session.get("gamecode"), Meteor.userId(), handicap, function(err, res) {
         if(err) {
             console.log("Error while setting handicap:", err);

@@ -220,6 +220,7 @@ Meteor.helpers = {
 			_.each( game.users, function( userId) {
 				Meteor.helpers.changeGameState( userId, "GAME_FINISHED");
 			});
+			Games.update( { 'gamecode':gamecode }, { $set:{ 'finished': true } } );
 		}
 	}
 };

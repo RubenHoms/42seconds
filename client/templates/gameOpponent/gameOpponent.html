@@ -3,11 +3,14 @@
         <h3 class="text_shadow_white_big">Round {{roundnumber}}</h3>
 
         <div class="score">Score {{score}}</div>
-        <ul class="answers text_shadow_black_big">
+        <ul class="text_shadw_black_big no-bullet-list">
             {{#each checkedOff}}
-                <li id="answer-{{id}}" style="text-decoration: line-through" class="inactive">
-                    <input type="checkbox" name="{{id}}" checked="checked" style="float:left">
-                    <label for="answer-{{id}}">{{this.answer}}</label></li>
+                <li>
+                    <label class="label-align">
+                        <input type="checkbox" class="left checked-checkbox">
+                        <span class="checked-answer">{{this.answer}}</span>
+                    </label>
+                </li>
             {{/each}}
         </ul>
         <div class="clock"></div>

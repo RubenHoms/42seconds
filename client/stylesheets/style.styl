@@ -610,13 +610,19 @@ div.wait
   font-weight: bold;
   font-size: 24px;
 
+.checked-answer
+  text-shadow: #000 2px 2px 1px;
+  color: color_green;
+  font-weight: bold;
+  font-size: 24px;
+  text-decoration: line-through;
+
 .unchecked-checkbox
   width 25px
   height 25px
   border-radius 12px
   -webkit-appearance: none
   background-color white
-  transform(translateY(8px))
 
 .checked-checkbox
   width 25px
@@ -624,4 +630,25 @@ div.wait
   border-radius 12px
   -webkit-appearance: none
   background-color color_green
-  transform(translateY(8px))
+
+label
+  font-size: 1rem;
+  color: #4d4d4d;
+  cursor: pointer;
+  display: block;
+  font-weight: normal;
+  line-height: 1.5;
+  margin-bottom: 0;
+
+.label-align input[type="checkbox"]
+  margin-top:6px;
+
+.label-align span
+  margin: 0 0 20px 20px;
+  display: block;
+
+.left
+  float:left;
+
+.no-bullet-list
+  list-style-type:none
