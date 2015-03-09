@@ -8,10 +8,10 @@
         <p class="subtitle"><span class="bar"></span> Rounds <span class="bar"></span></p>
 
         <div class="advanced_option_slider">
-            <select name="rounds">
-                <option value="1">1 round</option>
-                <option value="3">3 rounds</option>
-                <option value="5" selected="selected">5 rounds</option>
+            <select name="rounds" style="margin-top: 10px">
+                <option value="2">2 round</option>
+                <option value="4">4 rounds</option>
+                <option value="6" selected="selected">6 rounds</option>
                 <option value="10">10 rounds</option>
             </select>
         </div>
@@ -19,24 +19,9 @@
         <p class="subtitle"><span class="bar"></span> Category <span class="bar"></span></p>
 
         <div class="advanced_option_slider">
-            <select name="category">
+            <select name="category" style="margin-top: 10px">
                 {{#each categories}}
                     <option>{{this}}</option>
-                {{/each}}
-            </select>
-        </div>
-
-        <p class="subtitle"><span class="bar"></span> Difficulty <span class="bar"></span></p>
-
-        <div class="advanced_option_slider">
-            <select name="difficulty">
-                {{#each difficulties}}
-                    {{#if this.selected}}
-                        <option selected="selected">{{this.name}}</option>
-                    {{else}}
-                        <option>{{this.name}}</option>
-                    {{/if}}
-
                 {{/each}}
             </select>
         </div>

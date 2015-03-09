@@ -1,14 +1,14 @@
 devEnv:
   defaultClock: 5
   defaultRounds: 2
-  defaultCategory: 'all'
-  defaultDifficulty: 'medium'
+  defaultCategory: 'All'
+  defaultDifficulty: 'Medium'
   defaultNumberOfAnswers: 5
 liveEnv:
   defaultClock: 42
   defaultRounds: 5
-  defaultCategory: 'all'
-  defaultDifficulty: 'medium'
+  defaultCategory: 'All'
+  defaultDifficulty: 'Medium'
   defaultNumberOfAnswers: 5
 
 dev: true

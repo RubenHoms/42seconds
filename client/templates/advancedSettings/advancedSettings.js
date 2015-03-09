@@ -29,7 +29,7 @@ Template.advancedSettings.events({
     'click input#startgame':function () {
         var rounds = $('select[name="rounds"]').val()*1;
         var category = $('select[name="category"]').val();
-        var difficulty = $('select[name="difficulty"]').val();
+        var difficulty = "Medium";
 
         // Start a new game
         Meteor.call('startNewGame', Meteor.userId(), rounds, category, difficulty, function (error, game) {

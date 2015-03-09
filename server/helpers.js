@@ -44,63 +44,29 @@ Meteor.helpers = {
 		if(typeof game.checkDuplicates!='undefined') {
 			var checkDuplicates = JSON.parse(game.checkDuplicates);
 		} else {
-			var checkDuplicates = new Array();
+			var checkDuplicates = [];
 		}
 
-		var answers = new Array();
-		var data = new Array();
+		var answers = [];
 
 		for(var i=0; i<config.defaultNumberOfAnswers; i++) {
-			var answersWithGuessedPercentage = Answers.find().count() - Answers.find({'guess_percentage':null}).count();
 
-			if(game.difficulty=='medium' || answersWithGuessedPercentage < 250) {
-				if(game.category=='all' || typeof game.category == 'undefined' || game.category === null) {
+			if(game.difficulty=='Medium') {
+				if(game.category=='All' || !game.category) {
 					var words = Answers.find();
 				} else {
 					var words = Answers.find({'category':game.category});
 				}
-			} else {
-				if(game.difficulty == 'Super easy') {
-					lowerbound = 0.9;
-					upperbound = 1;
-				} else if(game.difficulty == 'Easy') {
-					lowerbound = 0.75;
-					upperbound = 1;
-				} else if(game.difficulty == 'Hard') {
-					lowerbound = 0.25;
-					upperbound = 0.5;
-				} else if(game.difficulty == 'Power extreme') {
-					lowerbound = 0;
-					upperbound = 0.25;
-				}
-				if(game.category=='all' || typeof game.category == 'undefined' || game.category === null) {
-					var words = Answers.find({'guess_percentage':{'$lte':upperbound,'$gte':lowerbound}}).fetch();
-				} else {
-					var words = Answers.find({'guess_percentage':{'$lte':upperbound,'$gte':lowerbound},'category':game.category}).fetch();
-				}
 			}
 
-			random = Math.floor(Math.random() * (words.count() - 0 + 1)) + 0; // we need to add the zero!!11!!1!
 			var words = words.fetch();
+			var random = Math.floor(Math.random() * (words.length - 1)) + 0; // we need to add the zero!!11!!1!
 
 			var answer = words[random];
-
-			if(typeof answer!='undefined') {
+			if( answer ) {
 				if(checkDuplicates.indexOf(answer.answer)==-1) {
 					checkDuplicates.push(answer.answer);
 					answers.push({"answer":answer.answer});
-					if(typeof answer.shown == 'undefined') {
-						shown = 0;
-					} else {
-						shown = answer.shown;
-					}
-					if(typeof answer.guessed == 'undefined') {
-						var guessed = 0;
-					} else {
-						var guessed = answer.guessed;
-					}
-					var newShown = (shown*1)+1;
-					Answers.update({'_id':answer._id}, {$set:{'shown':newShown,'guess_percentage':(newShown/guessed)}});
 				} else {
 					i=i-1;
 				}
