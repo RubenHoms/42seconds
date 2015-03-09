@@ -19,19 +19,23 @@
             {{/each}}
             <tr class="total">
                 <td>Total</td>
-                <td class="scores">{{teamRedScore}}</td>
-                <td class="scores">{{teamBlueScore}}</td>
+                <td class="scores">{{teamRedTotal}}</td>
+                <td class="scores">{{teamBlueTotal}}</td>
             </tr>
             </tbody>
         </table>
     </div>
     <div class="row row-centered">
-        {{#unless hasWinner}}
-            <input type="button" id="scoreok" class="scoreok" value="Done!"/>
+        {{#if iWon}}
+            <p>Congratulations, you won the game!</p>
         {{else}}
-            <div>{{winner}} has won the game!</div>
-            <input type="button" id="retry" value="Try again">
-        {{/unless}}
+            {{#if isATie}}
+                <p>The game ended in a tie.</p>
+            {{else}}
+                <p>Too bad, you lost the game.</p>
+            {{/if}}
+        {{/if}}
+        <p><input type="button" id="retry" value="Try again"></p>
     </div>
     {{ready}}
 </template>
