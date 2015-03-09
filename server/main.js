@@ -134,6 +134,24 @@ Meteor.methods({
         Games.update( { 'gamecode': gamecode }, { $inc: { round: 1 } } );
     },
 
+    /**
+     * This function will add an entry to the round handicap
+     * array. In this array the dice throw of a user is stored
+     * as follows:
+     * [
+     *   {
+     *     user: userId,
+     *     handicap: 0-2
+     *   }
+     *   , ...
+     * }
+     *
+     * The indexes of the array correspond to the round played.
+     * So index = 0 means round 1.
+     * @param {String} gamecode The game to set the handicap on.
+     * @param {String} userId   The userId of the user throwing the dice.
+     * @param {Number} handicap 0-2
+     */
     setRoundHandicap: function(gamecode, userId, handicap) {
         var game = Games.findOne( { 'gamecode': gamecode });
         if( game ) {
@@ -141,6 +159,12 @@ Meteor.methods({
         }
     },
 
+    /**
+     * This function will update the answers on a current game. Used
+     * for checking off answers.
+     * @param {String} gamecode The game to edit the answers on.
+     * @param {Array} answers   The answers which will replace the previous ones.
+     */
     updateAnswers: function(gamecode, answers) {
         Games.update({'gamecode':gamecode},{$set:{'answers':answers}});
     },
@@ -171,10 +195,6 @@ Meteor.methods({
 
         Games.update({'gamecode': gamecode}, {'$push': { 'roundScores': scores} } );
         Meteor.helpers.advanceGameByGamecode( gamecode );
-    },
-
-    declareWinner: function(gamecode, winner) {
-        Games.update({'gamecode': gamecode}, {'$set':{'winner':winner}});
     }
 });
 

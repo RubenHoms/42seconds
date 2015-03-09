@@ -91,3 +91,9 @@ Meteor.startup(function () {
         }
     });
 });
+
+Template.body.events({
+    'click .refresh-button': function() {
+        window.location.href = window.location.origin;
+    }
+});
