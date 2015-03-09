@@ -6,7 +6,7 @@ devEnv:
   defaultNumberOfAnswers: 5
 liveEnv:
   defaultClock: 42
-  defaultRounds: 5
+  defaultRounds: 6
   defaultCategory: 'All'
   defaultDifficulty: 'Medium'
   defaultNumberOfAnswers: 5
