@@ -11,7 +11,7 @@
  */
 Template.advancedSettings.helpers({
     categories: function() {
-        return ['All','Nerdy','Films','Acteurs','Sporten','Landen','Televisie','Steden'];
+        return ['All','Willekeurig','Nerdy','Films','Acteurs','Sporten','Landen','Televisie','Steden'];
     },
 
     difficulties: function() {
