@@ -11,8 +11,13 @@
             <select name="rounds" style="margin-top: 10px">
                 <option value="2">2 round</option>
                 <option value="4">4 rounds</option>
-                <option value="6" selected="selected">6 rounds</option>
-                <option value="10">10 rounds</option>
+                <option value="6">6 rounds</option>
+                <option value="10" selected="selected">10 rounds</option>
+                <option value="12">12 rounds</option>
+                <option value="14">14 rounds</option>
+                <option value="16">16 rounds</option>
+                <option value="18">18 rounds</option>
+                <option value="20">20 rounds</option>
             </select>
         </div>
 
@@ -23,6 +28,25 @@
                 {{#each categories}}
                     <option>{{this}}</option>
                 {{/each}}
+            </select>
+        </div>
+
+        <p class="subtitle"><span class="bar"></span> Language <span class="bar"></span></p>
+
+        <div class="advanced_option_slider">
+            <select name="language" style="margin-top: 10px">
+                <option value="all" selected="selected">All</option>
+                <option value="nl">Nederlands</option>
+                <option value="en">English</option>
+            </select>
+	</div>
+
+        <p class="subtitle"><span class="bar"></span> Use dice? <span class="bar"></span></p>
+
+        <div class="advanced_option_slider">
+            <select name="dice" style="margin-top: 10px">
+                <option value="1" selected="selected">Yes</option>
+                <option value="0">No</option>
             </select>
         </div>
 

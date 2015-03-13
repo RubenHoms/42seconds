@@ -4,11 +4,15 @@ devEnv:
   defaultCategory: 'All'
   defaultDifficulty: 'Medium'
   defaultNumberOfAnswers: 5
+  defaultLanguage: 'all'
+  defaultDice: 1
 liveEnv:
   defaultClock: 42
-  defaultRounds: 6
+  defaultRounds: 10
   defaultCategory: 'All'
   defaultDifficulty: 'Medium'
   defaultNumberOfAnswers: 5
+  defaultLanguage: 'all'
+  defaultDice: 1
 
 dev: false

@@ -33,9 +33,11 @@ Meteor.methods({
      * @param rounds        Number of rounds
      * @param category      The category to play
      * @param difficulty    The difficulty to play on
+     * @param language	    The language the items should be selected from
+     * @param dice	    Whether or not to use the dice to decide on handicap
      * @return {Games}      The game that was just created.
      */
-    startNewGame:function (userId, rounds, category, difficulty) {
+    startNewGame:function (userId, rounds, category, difficulty, language, dice) {
         var clock;
         if(typeof rounds=='undefined') {
             rounds = config.defaultRounds;
@@ -51,11 +53,19 @@ Meteor.methods({
             clock = config.defaultClock;
         }
 
+        if(typeof language=='undefined') {
+            language = config.defaultLanguage;
+        }
+
+        if(typeof dice=='undefined') {
+            dice = config.defaultDice;
+        }
+
         var gamecode = Meteor.helpers.createGameCode();
 
         // create a new game with the current team in it
         Games.insert({'clock':clock, 'rounds': rounds, 'category': category, 'difficulty': difficulty,
-            'gamecode':gamecode, 'round':1, 'users': [userId], roundScores: [], roundHandicaps: []
+            'gamecode':gamecode, 'round':1, 'users': [userId], roundScores: [], roundHandicaps: [], 'language':language, 'dice':dice
         });
 
 

@@ -17,7 +17,11 @@ Template.showCode.helpers({
         var game = Games.findOne({'gamecode':Session.get('gamecode')});
         if (game) {
             if (game.teams.length >= 2) {
-                Router.go("gameDice");
+		if(game.dice) {
+	                Router.go("gameDice");
+		} else {
+			Router.go("gameDice"); // how to decide where to go?
+		}
             }
         }
     },
