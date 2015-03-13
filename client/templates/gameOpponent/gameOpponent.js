@@ -58,10 +58,10 @@ Template.gameOpponent.helpers({
     },
 
     /**
-     * Get the total score of the opponent.
-     * @return {Number} The score.
+     * Gets the score of the other team
+     * @return {Number} The score of the other team.
      */
-    score_opponent: function() {
+    otherTeamScore: function() {
         var game = Games.findOne({'gamecode' : Session.get('gamecode')});
         if(game) {
             if( Meteor.userId() == game.users[0] ) {

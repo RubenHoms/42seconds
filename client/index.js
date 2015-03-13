@@ -90,6 +90,20 @@ Meteor.startup(function () {
 
         }
     });
+
+    Handlebars.registerHelper( "isTeamRed", function() {
+        var game = Games.findOne( { "gamecode": Session.get( "gamecode" ) } );
+        if( game ) {
+            return game.users[0] === Meteor.userId();
+        }
+    });
+
+    Handlebars.registerHelper( "isTeamBlue", function() {
+        var game = Games.findOne( { "gamecode": Session.get( "gamecode" ) } );
+        if( game ) {
+            return game.users[1] === Meteor.userId();
+        }
+    });
 });
 
 Template.body.events({

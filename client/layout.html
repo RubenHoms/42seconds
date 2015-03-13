@@ -4,6 +4,13 @@
             <header>
                 {{> yield "header"}}
                 <img class="headerlogo" src="/images/logo-small.png">
+                {{#if isTeamRed}}
+                    <img class="team-badge" src="/images/team-red-icon.png">
+                {{/if}}
+                {{#if isTeamBlue}}
+                    <img class="team-badge" src="/images/team-blue-icon.png">
+                {{/if}}
+
                 <span class="refresh-button glyphicon glyphicon-refresh"></span>
             </header>
         </div>
