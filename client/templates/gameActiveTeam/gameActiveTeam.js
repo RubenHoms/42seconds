@@ -61,12 +61,22 @@ Template.gameActiveTeam.helpers({
         }
     },
 
-    checkboxClass: function( checkedOff ) {
-        return checkedOff ? 'checked-checkbox' : 'unchecked-checkbox';
-    },
-
-    answerClass: function( checkedOff ) {
-        return checkedOff ? 'checked-answer' : 'unchecked-answer';
+    /**
+     * Gets the score of the other team
+     * @return {Number} The score of the other team.
+     */
+    otherTeamScore: function() {
+        var game = Games.findOne({'gamecode' : Session.get('gamecode')});
+        if(game) {
+            if( Meteor.userId() == game.users[0] ) {
+                // I'm in team red
+                return Template.gameFinished.__helpers[" teamBlueTotal"]();
+            }
+            if( Meteor.userId() == game.users[1] ) {
+                // I'm in the blue team
+                return Template.gameFinished.__helpers[" teamRedTotal"]();
+            }
+        }
     }
 });
 

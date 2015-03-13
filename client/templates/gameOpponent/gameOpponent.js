@@ -58,6 +58,24 @@ Template.gameOpponent.helpers({
     },
 
     /**
+     * Gets the score of the other team
+     * @return {Number} The score of the other team.
+     */
+    otherTeamScore: function() {
+        var game = Games.findOne({'gamecode' : Session.get('gamecode')});
+        if(game) {
+            if( Meteor.userId() == game.users[0] ) {
+                // I'm in team red
+                return Template.gameFinished.__helpers[" teamBlueTotal"]();
+            }
+            if( Meteor.userId() == game.users[1] ) {
+                // I'm in the blue team
+                return Template.gameFinished.__helpers[" teamRedTotal"]();
+            }
+        }
+    },
+
+    /**
      * Function which will automatically start the clock animation once the server has
      * started the clock.
      */
