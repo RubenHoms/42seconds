@@ -49,7 +49,6 @@ Meteor.helpers = {
 
 		var answers = [];
 		var filters = {};
-console.log(game);
 		for(var i=0; i<config.defaultNumberOfAnswers; i++) {
 
 			if(game.difficulty=='Medium') {
@@ -59,7 +58,7 @@ console.log(game);
 					filters.category = game.category;
 				}
 			}
-			if(game.language != 'All') {
+			if(game.language != 'all') {
 				filters.langauge = game.language;
 			}
 

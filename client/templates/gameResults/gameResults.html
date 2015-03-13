@@ -1,7 +1,11 @@
 <template name="gameResults">
     <div class="game-results bluebg row row-centered">
         <h3 class="text_shadow_white_small">Round results:</h3>
-        <p>You threw a handicap of <strong>{{roundHandicap}}</strong> and guessed <strong>{{roundScoreWithoutHandicap}}</strong> answers correctly.</p>
+        {{#if usesDice}}
+            <p>You threw a handicap of <strong>{{roundHandicap}}</strong> and guessed <strong>{{roundScoreWithoutHandicap}}</strong> answers correctly.</p>
+        {{else}}
+            <p>You guessed <strong>{{roundScore}}</strong> answers correctly.</p>
+        {{/if}}
         <p>This means that you scored <strong>{{roundScore}}</strong> points this round.</p>
         <p>Waiting for the other team to start the next round.</p>
     </div>

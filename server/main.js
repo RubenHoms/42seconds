@@ -45,7 +45,7 @@ Meteor.methods({
         if(typeof category=='undefined') {
             category = config.defaultCategory;
         }
-        
+
         if(typeof difficulty=='undefined') {
             difficulty = config.defaultDifficulty;
         }
@@ -85,8 +85,15 @@ Meteor.methods({
         Games.update( { 'gamecode': gamecode }, { $push: { users: userId } } );
         var game = Games.findOne( { 'gamecode': gamecode } );
         var userGameStates = {};
-        userGameStates[game.users[0]] = "GAME_THROW_DICE";
-        userGameStates[game.users[1]] = "GAME_PLAY_WAIT";
+        if(game.dice == 0) {
+            userGameStates[game.users[0]] = "GAME_PLAY";
+            userGameStates[game.users[1]] = "GAME_PLAY_WAIT";
+
+            Meteor.call("startClock", gamecode, game.users[0] );
+        } else {
+            userGameStates[game.users[0]] = "GAME_THROW_DICE";
+            userGameStates[game.users[1]] = "GAME_PLAY_WAIT";
+        }
         Meteor.helpers.changeUserGameStates(userGameStates);
 
         return Games.findOne({'gamecode':gamecode});
@@ -139,8 +146,29 @@ Meteor.methods({
         // Load a new set of answers
         Meteor.helpers.loadAnswers(gamecode);
 
-        // Advance the game for both players.
-        Meteor.helpers.advanceGameByGamecode(gamecode);
+        // Check whether the game uses a dice and react accordingly.
+        if( game.dice == 0 ) {
+            _.each( game.users, function( userId ) {
+                var user = Meteor.users.findOne( userId );
+                if( user ) {
+                    if( user.profile.GameState == "GAME_RESULT_OVERVIEW" ) {
+                        // User is going to wait the next round
+                        Meteor.helpers.changeGameState( userId, "GAME_PLAY_WAIT" );
+                    } else {
+                        // Start the clock and then advance the game again
+                        // this is because the startClock function also advances the state
+                        // to the gameDice template of the person who's going to play,
+                        // so we need to advance it to the gameActiveTeam template again.
+                        Meteor.call( "startClock", gamecode, user._id, function() {
+                            Meteor.helpers.advanceGameState( user._id );
+                        } );
+                    }
+                }
+            });
+        } else {
+            // Game uses a dice, advance the game like normal.
+            Meteor.helpers.advanceGameByGamecode(gamecode);
+        }
         Games.update( { 'gamecode': gamecode }, { $inc: { round: 1 } } );
     },
 
@@ -190,11 +218,11 @@ Meteor.methods({
         var correctUserId;
         if( game ) {
             for( var i = 0; i < game.users.length; i++) {
-                 if( userId == game.users[i] ) {
-                     continue;
-                 }  else {
-                     correctUserId = game.users[i];
-                 }
+                if( userId == game.users[i] ) {
+                    continue;
+                }  else {
+                    correctUserId = game.users[i];
+                }
             }
         }
 

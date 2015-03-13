@@ -29,5 +29,16 @@ Template.gameResults.helpers({
         if( game ) {
             return _.last( game.roundScores).score + _.last( game.roundHandicaps).handicap;
         }
+    },
+
+    /**
+     * This template helper checks if the user is using a dice.
+     * @returns {boolean}   Uses a dice?
+     */
+    usesDice: function() {
+        var game = Games.findOne( {'gamecode': Session.get('gamecode') } );
+        if( game ) {
+            return game.dice == 1;
+        }
     }
 });

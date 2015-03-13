@@ -38,7 +38,7 @@ Template.gameScoreCheck.events({
             return answer.checkedOff;
         });
 
-        var handicap = _.last(game.roundHandicaps).handicap;
+        var handicap = game.dice == 0 ? 0 : _.last(game.roundHandicaps).handicap;
         score = correctAnswers.length - handicap;
 
         Meteor.call("confirmScore", Session.get("gamecode"), score, Meteor.userId(), function(err, res) {
