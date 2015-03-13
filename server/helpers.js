@@ -48,17 +48,22 @@ Meteor.helpers = {
 		}
 
 		var answers = [];
-
+		var filters = {};
+console.log(game);
 		for(var i=0; i<config.defaultNumberOfAnswers; i++) {
 
 			if(game.difficulty=='Medium') {
 				if(game.category=='All' || !game.category) {
-					var words = Answers.find();
+					// do nothing
 				} else {
-					var words = Answers.find({'category':game.category});
+					filters.category = game.category;
 				}
 			}
+			if(game.language != 'All') {
+				filters.langauge = game.language;
+			}
 
+			var words = Answers.find(filters);
 			var words = words.fetch();
 			var random = Math.floor(Math.random() * (words.length - 1)) + 0; // we need to add the zero!!11!!1!
 

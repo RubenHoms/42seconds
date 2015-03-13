@@ -11,7 +11,7 @@
  */
 Template.advancedSettings.helpers({
     categories: function() {
-        return ['All','Willekeurig','Nerdy','Films','Acteurs','Sporten','Landen','Televisie','Steden'];
+        return ['All','Willekeurig','Nerdy','Films','Acteurs','Sporten','Landen','Televisie','Steden','Magento'];
     },
 
     difficulties: function() {
@@ -30,9 +30,11 @@ Template.advancedSettings.events({
         var rounds = $('select[name="rounds"]').val()*1;
         var category = $('select[name="category"]').val();
         var difficulty = "Medium";
+        var language = $('select[name="language"]').val();
+        var dice = $('select[name="dice"]').val();
 
         // Start a new game
-        Meteor.call('startNewGame', Meteor.userId(), rounds, category, difficulty, function (error, game) {
+        Meteor.call('startNewGame', Meteor.userId(), rounds, category, difficulty, language, dice, function (error, game) {
             Session.set('gamecode',game.gamecode);
         });
     },
