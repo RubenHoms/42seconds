@@ -104,6 +104,9 @@ Meteor.startup(function () {
             return game.users[1] === Meteor.userId();
         }
     });
+
+    // Keep the lockscreen disables for mobile devices
+    keepscreenon.enable();
 });
 
 Template.body.events({
