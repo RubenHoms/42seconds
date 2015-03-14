@@ -2,7 +2,7 @@
 // the entire section is optional.
 App.info({
     id: 'com.startupweekend.ruben.fortytwoseconds',
-    name: 'Forytwo Seconds',
+    name: 'FortyTwo Seconds',
     description: 'FortyTwo Seconds is a mobile version of the popular 30 seconds game. Easy to take with you, anywhere!',
     author: 'Ruben Homs',
     email: 'rubenhoms@gmail.com',
