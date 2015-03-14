@@ -31,7 +31,6 @@ var set_handicap = function(handicap) {
 };
 
 function throwDice() {
-    $('input#dice').attr('disabled', 'disabled');
     var number_of_dices = $('#dices').children().length;
     var max_animations = 50;
     var lastindex = max_animations;
@@ -51,6 +50,7 @@ function throwDice() {
 
 Template.gameDice.events({
     'click input#dice':function () {
-		throwDice();
+        $('input#dice').attr('disabled', 'disabled');
+        throwDice();
     }
 });

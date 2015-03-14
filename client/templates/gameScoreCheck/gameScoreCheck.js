@@ -32,6 +32,8 @@ Template.gameScoreCheck.events({
      * Confirms the answers.
      */
     'click input.nextround': function () {
+        // Disable the button to stop accidental double taps etc.
+        $('#nextround').attr('disabled', 'disabled');
         var game = Games.findOne({'gamecode' : Session.get('gamecode')});
 
         var correctAnswers = _.filter( game.answers, function( answer ) {

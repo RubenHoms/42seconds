@@ -36,6 +36,17 @@ Template.join.events({
     'keyup input#gamecode': function () {
     	$('#gamecode').val($('#gamecode').val().replace(/[^0-9]/g, ''));
     },
+
+    /**
+     * This function binds the enter key event to the click of 'join game'
+     * @param event The event that occured
+     */
+    'keypress input.gamecode': function( event ) {
+        if (event.which === 13) {
+            $("#joingame").trigger("click");
+        }
+    },
+
     /**
      * Event: Click on the 'back' button.
      */
