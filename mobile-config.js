@@ -7,7 +7,7 @@ App.info({
     author: 'Ruben Homs',
     email: 'rubenhoms@gmail.com',
     website: 'http://rubenhoms.nl',
-    version: '0.0.1'
+    version: '2.0.0'
 });
 
 // Set up resources such as icons and launch screens.
