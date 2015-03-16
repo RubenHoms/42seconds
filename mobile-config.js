@@ -6,7 +6,8 @@ App.info({
     description: 'FortyTwo Seconds is a mobile version of the popular 30 seconds game. Easy to take with you, anywhere!',
     author: 'Ruben Homs',
     email: 'rubenhoms@gmail.com',
-    website: 'http://rubenhoms.nl'
+    website: 'http://rubenhoms.nl',
+    version: '0.0.1'
 });
 
 // Set up resources such as icons and launch screens.

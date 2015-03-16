@@ -105,8 +105,10 @@ Meteor.startup(function () {
         }
     });
 
-    // Keep the lockscreen disables for mobile devices
-    keepscreenon.enable();
+    if (Meteor.isCordova) {
+        // Keep the lockscreen disabled for mobile devices
+        keepscreenon.enable();
+    }
 });
 
 Template.body.events({
